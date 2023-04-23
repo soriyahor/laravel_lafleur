@@ -14,11 +14,24 @@
                         <label>nom</label>
                         <input type="text" name="nom" id="nom">
                         <select name="categorie" id="categorie">
-                            <option value="">--Please choose an option--</option>
+                            <option value="">--Choissisez la catégorie--</option>
                             @foreach($categories as $categorie)
                             <option value="{{$categorie->id}}">{{$categorie->nom}}</option>
                             @endforeach
                         </select>
+                        <select name="conditionnement" id="conditionnement">
+                            <option value="">--Choissisez le conditionnement--</option>
+                            @foreach($conditionnements as $conditionnement)
+                            <option value="{{$conditionnement->id}}">{{$conditionnement->nom}}</option>
+                            @endforeach
+                        </select>
+                        <select name="couleur" id="couleur">
+                            <option value="">--Choissisez la couleur--</option>
+                            @foreach($couleurs as $couleur)
+                            <option value="{{$couleur->id}}">{{$couleur->nom}}</option>
+                            @endforeach
+                        </select>
+                        <br><br>
                         <input type="submit" value="envoyer" class="btn-blue">
                         <input type="reset" value="annuler" class="btn-white">
                     </form>

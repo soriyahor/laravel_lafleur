@@ -11,9 +11,10 @@
                 <div class="p-6 text-gray-900">
 
 
-                    <form>
-                        <label>Libellé</label>
-                        <input type="text" name="libelle" id="libelle">
+                    <form action="{{route('categories.store')}}" method="POST">
+                        @csrf
+                        <label>Nom catégorie</label>
+                        <input type="text" name="nom" id="nom">
                         <input type="submit" value="envoyer" class="btn-blue">
                         <input type="reset" value="annuler" class="btn-white">
                     </form>

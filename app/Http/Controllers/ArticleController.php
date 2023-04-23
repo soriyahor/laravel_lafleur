@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Categorie;
+use App\Models\Conditionnement;
+use App\Models\Couleur;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -28,8 +30,11 @@ class ArticleController extends Controller
     {
 
         $categories = Categorie::all();
+        $conditionnements = Conditionnement::all();
+        $couleurs = Couleur::all();
 
-        return view('articles.create', ['categories' => $categories]);
+
+        return view('articles.create', ['categories' => $categories, 'conditionnements'=>$conditionnements, 'couleurs' => $couleurs]);
 
     }
 
@@ -51,8 +56,8 @@ class ArticleController extends Controller
             $articles->quantite_stock = 100;
             $articles->selection = 0;
             $articles->categorie()->associate($request->input('categorie'));
-            $articles->conditionnement()->associate(1);
-            $articles->couleur()->associate(1);
+            $articles->conditionnement()->associate($request->input('conditionnement'));
+            $articles->couleur()->associate($request->input('couleur'));
             $articles->save();
             
             return redirect()->route('articles.index');
@@ -72,8 +77,10 @@ class ArticleController extends Controller
     {
         $articles = Article::find($id);
         $categorie = $articles->categorie;
+        $couleur = $articles->couleur;
+        $conditionnement = $articles->conditionnement;
         // dd($jeu);
-        return view('articles.show', ['id' => $id, 'articles' => $articles, 'categorie' => $categorie]);
+        return view('articles.show', ['id' => $id, 'articles' => $articles, 'categorie' => $categorie, 'couleur' => $couleur, "conditionnement" => $conditionnement]);
 
         // return view('articles.show', compact('jeu', 'categorie'));
     }

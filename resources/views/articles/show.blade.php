@@ -19,7 +19,10 @@
                                     text-center
                                     md:text-left">
                             Titre : {{$articles->nom}}
+                            <p>Quantité : </p>
                             <p>Categorie : {{$categorie->nom}}</p>
+                            <p>Couleur : {{$couleur->nom}}</p>
+                            <p>Conditionnement : {{$conditionnement->nom}}</p>
                         </div>
                         <a href="{{route('articles.edit', $articles->id)}}"><x-modifier-btn></x-modifier-btn></a>
                         <x-supprimer-btn :action="route('articles.destroy', $articles->id)"></x-supprimer-btn >

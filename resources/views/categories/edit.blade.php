@@ -14,9 +14,9 @@
 
                     <form action="{{route('categories.update', $categories->id)}}" method="POST">
                         @method ('PUT') @csrf
-                        <label>Libellé</label>
-                        <input type="text" name="libelle" id="libelle" value="{{$categories->libelle}}">
-                        @error('libelle')
+                        <label>Nom catégorie</label>
+                        <input type="text" name="nom" id="nom" value="{{$categories->nom}}">
+                        @error('nom')
                         <div class="text-red-500">{{$message}}</div>
                         @enderror
 

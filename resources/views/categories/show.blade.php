@@ -18,8 +18,8 @@
                                     text-black
                                     text-center
                                     md:text-left">
-                            Libellé : {{$categories->libelle}}
-                           <p>Titre : {{$articles}}</p>
+                            Nom de la catégorie : {{$categories->nom}}
+                           
                            
                         </div>
                         <a href="{{route('categories.edit', $categories->id)}}"><x-modifier-btn></x-modifier-btn></a>
