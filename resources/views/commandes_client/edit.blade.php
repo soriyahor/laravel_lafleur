@@ -10,18 +10,22 @@
                 <div class="p-6 text-gray-900">
 
                 <p>etat_commande : {{$commandeClient->etat_commande}}</p>
+                <p>etat_livraison : {{$etatLivraison}}</p>
 
                     <form action="{{route('commandes_client.update', $commandeClient->id)}}" method="POST">
                         @method ('PUT') @csrf                        
                         <select name="etatCommande" id="etatCommande">
-                            <option value="">--Choissisez la catégorie--</option>
+                            <option value="{{$commandeClient->etat_commande}}">{{$commandeClient->etat_commande}}</option>
                             @foreach($etatsCommande as $etatCommande)
                             <option value="{{$etatCommande}}">{{$etatCommande}}</option>
                             @endforeach
                         </select>
-                        @error('nom')
-                        <div class="text-red-500">{{$message}}</div>
-                        @enderror
+                        <select name="etatLivraison" id="etatLivraison">
+                            <option value="{{$etatLivraison}}">{{$etatLivraison}}</option>
+                            @foreach($etatsLivraison as $etatLivraison)
+                            <option value="{{$etatLivraison}}">{{$etatLivraison}}</option>
+                            @endforeach
+                        </select>
                         <input type="submit" value="envoyer" class="btn-blue">
                         <input type="reset" value="annuler" class="btn-white">
                     </form>

@@ -20,8 +20,6 @@
                                     md:text-left">
                             <p>date_commande : {{$commandeClient->date_commande}}<br>
                             etat_commmande :  {{$commandeClient->etat_commande}}
-                            <a href="{{route('commandes_client.edit', $commandeClient->id)}}"><x-modifier-btn></x-modifier-btn></a>
-                            <br>
                             <br>
                             date_livraison : {{$commandeClient->livraison->date_livraison}}<br>
                             etat_livraison : {{$commandeClient->livraison->etat_livraison}}<br>

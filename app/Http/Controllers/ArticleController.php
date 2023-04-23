@@ -93,6 +93,7 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $articles = Article::find($id);
+        
         return view('articles.edit', ['id' => $id, 'articles' => $articles]);
     }
 
@@ -101,13 +102,10 @@ class ArticleController extends Controller
         if ($request->validate([
             'nom' => 'required|string|max:45|min:5'
         ])) {
-
-            $nom = $request->input('nom');
             $articles = Article::find($id);
-            $articles->nom = $nom;
+            $articles->quantite_stock = $request->input('quantite_stock');
             $articles->save();
             return redirect()->route('articles.index');
-            dd($articles->nom);
         } else {
             return redirect()->back();
         }

@@ -75,8 +75,15 @@ class CommandeClientController extends Controller
     public function edit($id)
     {
         $etatsCommande = ['payé','annulée'];
+        $etatsLivraison = ['en cours de livraison','livré'];
+
         $commandeClient = CommandeClient::find($id);
-        return view('commandes_client.edit', ['etatsCommande' => $etatsCommande, 'commandeClient' => $commandeClient]);
+        $etatLivraison = $commandeClient->livraison()->first()->etat_livraison;
+        return view('commandes_client.edit', [
+            'etatsCommande' => $etatsCommande,
+         'commandeClient' => $commandeClient,
+          'etatLivraison' => $etatLivraison,
+          'etatsLivraison' => $etatsLivraison]);
 
     }
 
@@ -84,6 +91,9 @@ class CommandeClientController extends Controller
     {
         $commandeClient = CommandeClient::find($id);
         $commandeClient->etat_commande =  $request->input('etatCommande');
+        $livraison = $commandeClient->livraison()->first();
+        $livraison->etat_livraison =  $request->input('etatLivraison');
+        $livraison->save();
         $commandeClient->save();
         return redirect()->route('commandes_client.index');
     }
