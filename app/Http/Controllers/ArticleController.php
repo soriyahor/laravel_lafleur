@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Categorie;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -15,7 +16,7 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::all();
-        return view('articles.index', ['articles'=>$articles]);
+        return view('articles.index', ['articles' => $articles]);
     }
 
     /**
@@ -26,11 +27,10 @@ class ArticleController extends Controller
     public function create()
     {
 
-        return view('articles.create', ['message'=>"Cette page n'est pas encore développée"]);
-        // $jeu = new Article();
-        // $jeu->titre = "";
-        // $jeu->save();
-        // $jeu->id;
+        $categories = Categorie::all();
+
+        return view('articles.create', ['categories' => $categories]);
+
     }
 
     /**
@@ -41,7 +41,25 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->validate([
+            'nom' => 'required|string|max:45|min:4'
+        ])) {
+        
+            $articles = new Article();
+            $articles->nom = $request->input('nom');
+            $articles->prix = 10;
+            $articles->quantite_stock = 100;
+            $articles->selection = 0;
+            $articles->categorie()->associate($request->input('categorie'));
+            $articles->conditionnement()->associate(1);
+            $articles->couleur()->associate(1);
+            $articles->save();
+            
+            return redirect()->route('articles.index');
+            dd($request);
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -55,7 +73,7 @@ class ArticleController extends Controller
         $articles = Article::find($id);
         $categorie = $articles->categorie;
         // dd($jeu);
-        return view ('articles.show', ['id'=>$id, 'articles'=>$articles, 'categorie'=>$categorie]);
+        return view('articles.show', ['id' => $id, 'articles' => $articles, 'categorie' => $categorie]);
 
         // return view('articles.show', compact('jeu', 'categorie'));
     }
@@ -69,31 +87,24 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $articles = Article::find($id);
-        return view ('articles.edit', ['id'=>$id, 'articles'=>$articles]);
+        return view('articles.edit', ['id' => $id, 'articles' => $articles]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         if ($request->validate([
-            'titre' => 'required|string|max:45|min:5'
-        ])){
-        $titre = $request->input('titre');
-        $articles = Article::find($id);
-        $articles->titre = $titre;
-        $articles->save();
-        return redirect()->route('articles.index');
-        dd($articles->titre);
-    }else {
-        return redirect()->back();
-    }
-    die;
+            'nom' => 'required|string|max:45|min:5'
+        ])) {
+
+            $nom = $request->input('nom');
+            $articles = Article::find($id);
+            $articles->nom = $nom;
+            $articles->save();
+            return redirect()->route('articles.index');
+            dd($articles->nom);
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -107,6 +118,5 @@ class ArticleController extends Controller
 
         Article::destroy($id);
         return redirect()->route('articles.index');
-        
     }
 }

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Détails catégorie') }}
+            {{ __('Détails article') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -18,12 +18,11 @@
                                     text-black
                                     text-center
                                     md:text-left">
-                            Libellé : {{$categories->libelle}}
-                           <p>Titre : {{$articles}}</p>
-                           
+                            Titre : {{$articles->nom}}
+                            <p>Categorie : {{$categorie->nom}}</p>
                         </div>
-                        <a href="{{route('categories.edit', $categories->id)}}"><x-modifier-btn></x-modifier-btn></a>
-                        <x-supprimer-btn :action="route('categories.destroy', $categories->id)"></x-supprimer-btn >
+                        <a href="{{route('articles.edit', $articles->id)}}"><x-modifier-btn></x-modifier-btn></a>
+                        <x-supprimer-btn :action="route('articles.destroy', $articles->id)"></x-supprimer-btn >
                     </div>
                 </div>
             </div>
