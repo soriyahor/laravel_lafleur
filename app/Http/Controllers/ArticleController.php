@@ -49,7 +49,6 @@ class ArticleController extends Controller
         if ($request->validate([
             'nom' => 'required|string|max:45|min:4'
         ])) {
-        
             $articles = new Article();
             $articles->nom = $request->input('nom');
             $articles->prix = 10;

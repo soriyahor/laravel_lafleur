@@ -9,23 +9,23 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    <h1>{{__('List of all categories')}}</h1>
+                    <h1>{{__('List of all couleurs')}}</h1>
 
                     <table class="border">
                         <thead>
                             <th>Id</th>
-                            <th>Catégorie</th>
+                            <th>Couleur</th>
                             <th>Action</th>
-                            <th><a href="{{route('categories.create')}}"><x-creer-btn></x-creer-btn></a></th>
+                            <th><a href="{{route('couleurs.create')}}"><x-creer-btn></x-creer-btn></a></th>
                         </thead>
 
-                        @foreach($categories as $categorie)
+                        @foreach($couleurs as $couleur)
                         <tr class="odd:bg-gray-100">
-                            <td table-border>{{$categorie->id}}</td>
-                            <td table-border>{{$categorie->nom}}</td>
-                            <td><a href="{{route('categories.edit', $categorie->id)}}"><x-modifier-btn></x-modifier-btn></a>
-                                <a href="{{route('categories.show', $categorie->id)}}"><x-voir-btn></x-voir-btn></a>
-                                <x-supprimer-btn :action="route('categories.destroy', $categorie->id)"></x-supprimer-btn >
+                            <td table-border>{{$couleur->id}}</td>
+                            <td table-border>{{$couleur->nom}}</td>
+                            <td><a href="{{route('couleurs.edit', $couleur->id)}}"><x-modifier-btn></x-modifier-btn></a>
+                                <a href="{{route('couleurs.show', $couleur->id)}}"><x-voir-btn></x-voir-btn></a>
+                                <x-supprimer-btn :action="route('couleurs.destroy', $couleur->id)"></x-supprimer-btn >
                             </td>
                         </tr>
                         @endforeach

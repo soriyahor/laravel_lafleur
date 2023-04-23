@@ -15,6 +15,10 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                         <x-nav-link :href="route('commandes_client.index')" :active="request()->routeIs('commandes_client.index')">
+                            {{ __('Commandes client') }}
+                        </x-nav-link> 
                     
                         <x-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.index')">
                             {{ __('Articles') }}
@@ -22,7 +26,15 @@
 
                         <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
                             {{ __('Catégories') }}
-                        </x-nav-link>                    
+                        </x-nav-link>     
+                        
+                        <x-nav-link :href="route('couleurs.index')" :active="request()->routeIs('couleurs.index')">
+                            {{ __('Couleurs') }}
+                        </x-nav-link> 
+
+                        <x-nav-link :href="route('conditionnements.index')" :active="request()->routeIs('couleurs.index')">
+                            {{ __('Conditionnements') }}
+                        </x-nav-link> 
                 </div>
 
                 <!-- Settings Dropdown -->

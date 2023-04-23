@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\ConditionnementController;
+use App\Http\Controllers\CouleurController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CommandeClientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,3 +37,6 @@ require __DIR__.'/auth.php';
 
 Route::resource('articles', ArticleController::class);
 Route::resource('categories', CategorieController::class);
+Route::resource('couleurs', CouleurController::class);
+Route::resource('conditionnements', ConditionnementController::class);
+Route::resource('commandes_client', CommandeClientController::class);
