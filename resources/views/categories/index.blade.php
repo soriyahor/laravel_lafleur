@@ -21,9 +21,8 @@
 
                         @foreach($categories as $categorie)
                         <tr>
-
                             <td>{{$categorie->id}}</td>
-                            <td>{{$categorie->libelle}}</td>
+                            <td>{{$categorie->nom}}</td>
                             <td><a href="{{route('categories.edit', $categorie->id)}}"><x-modifier-btn></x-modifier-btn></a>
                                 <a href="{{route('categories.show', $categorie->id)}}"><x-voir-btn></x-voir-btn></a>
                                 <x-supprimer-btn :action="route('categories.destroy', $categorie->id)"></x-supprimer-btn >

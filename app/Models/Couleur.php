@@ -5,15 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+class Couleur extends Model
 {
     use HasFactory;
-    protected $table = "tags";
+    protected $table = "couleur";
     protected $primaryKey = "id";
-    protected $fillable = ['nom'];
     public $timestamps = false;
+    protected $fillable = ['nom'];
+    protected $fillable_desc = array('desc');
 
-    public function jeux(){
-        return $this->belongsToMany(Jeu::class, 'pivot_tags');
-    }
 }

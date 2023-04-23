@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorie;
+
 use Illuminate\Http\Request;
 
 class CategorieController extends Controller
@@ -25,7 +26,9 @@ class CategorieController extends Controller
      */
     public function create()
     {
-        return view('categories.create', ['message' => "Cette page n'est pas encore développée"]);
+        
+        return view('categories.create');
+
     }
 
     /**
@@ -36,7 +39,20 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->validate([
+            'nom' => 'required|string|max:45|min:4'
+        ])) {
+        
+            $categories = new Categorie();
+            $categories->nom = $request->input('nom');
+            
+            $categories->save();
+            
+            return redirect()->route('categories.index');
+            dd($request);
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -48,11 +64,11 @@ class CategorieController extends Controller
     public function show($id)
     {
         $categories = Categorie::find($id);
+       
         // dd($jeu);
-        $jeux = $categories->jeux;
-        return view('categories.show', ['id' => $id, 'categories' => $categories, 'jeux'=>$jeux]);
-        // return view('categories.show')
-        dd($jeux);
+        return view('categories.show', ['id' => $id, 'categories' => $categories]);
+
+        // return view('articles.show', compact('jeu', 'categorie'));
     }
 
     /**
@@ -67,28 +83,21 @@ class CategorieController extends Controller
         return view('categories.edit', ['id' => $id, 'categories' => $categories]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         if ($request->validate([
-            'libelle' => 'required|string|max:45|min:5'
-        ])){
-        $libelle = $request->input('libelle');
-        $categorie = Categorie::find($id);
-        $categorie->libelle = $libelle;
-        $categorie->save();
-        return redirect()->route('categories.index');
-        dd($categorie->libelle);
-    }else {
-        return redirect()->back();
-    }
-    die;
+            'nom' => 'required|string|max:45|min:5'
+        ])) {
+
+            $nom = $request->input('nom');
+            $categories = Categorie::find($id);
+            $categories->nom = $nom;
+            $categories->save();
+            return redirect()->route('categories.index');
+            dd($categories->nom);
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -99,8 +108,8 @@ class CategorieController extends Controller
      */
     public function destroy($id)
     {
+
         Categorie::destroy($id);
         return redirect()->route('categories.index');
-        //
     }
 }
