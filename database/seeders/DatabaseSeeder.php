@@ -25,14 +25,5 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
-        Categorie::factory(10)->create();
-        Jeu::factory(10)->create();
-        Jeu::factory()->create(['titre'=>'mario']);
-        
-        Tag::factory(50)->create();
-        $jeux = Jeu::all();
-        foreach($jeux as $jeu){
-            $jeu->tags()->attach('1');
-        }
     }
 }

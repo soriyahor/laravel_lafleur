@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jeu;
+use App\Models\Article;
 use Illuminate\Http\Request;
 
-class JeuController extends Controller
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class JeuController extends Controller
      */
     public function index()
     {
-        $jeux = Jeu::all();
-        return view('jeux.index', ['jeux'=>$jeux]);
+        $articles = Article::all();
+        return view('articles.index', ['articles'=>$articles]);
     }
 
     /**
@@ -26,8 +26,8 @@ class JeuController extends Controller
     public function create()
     {
 
-        return view('jeux.create', ['message'=>"Cette page n'est pas encore développée"]);
-        // $jeu = new Jeu();
+        return view('articles.create', ['message'=>"Cette page n'est pas encore développée"]);
+        // $jeu = new Article();
         // $jeu->titre = "";
         // $jeu->save();
         // $jeu->id;
@@ -52,12 +52,12 @@ class JeuController extends Controller
      */
     public function show($id)
     {
-        $jeux = Jeu::find($id);
-        $categorie = $jeux->categorie;
+        $articles = Article::find($id);
+        $categorie = $articles->categorie;
         // dd($jeu);
-        return view ('jeux.show', ['id'=>$id, 'jeux'=>$jeux, 'categorie'=>$categorie]);
+        return view ('articles.show', ['id'=>$id, 'articles'=>$articles, 'categorie'=>$categorie]);
 
-        // return view('jeux.show', compact('jeu', 'categorie'));
+        // return view('articles.show', compact('jeu', 'categorie'));
     }
 
     /**
@@ -68,8 +68,8 @@ class JeuController extends Controller
      */
     public function edit($id)
     {
-        $jeux = Jeu::find($id);
-        return view ('jeux.edit', ['id'=>$id, 'jeux'=>$jeux]);
+        $articles = Article::find($id);
+        return view ('articles.edit', ['id'=>$id, 'articles'=>$articles]);
     }
 
     /**
@@ -85,11 +85,11 @@ class JeuController extends Controller
             'titre' => 'required|string|max:45|min:5'
         ])){
         $titre = $request->input('titre');
-        $jeux = Jeu::find($id);
-        $jeux->titre = $titre;
-        $jeux->save();
-        return redirect()->route('jeux.index');
-        dd($jeux->titre);
+        $articles = Article::find($id);
+        $articles->titre = $titre;
+        $articles->save();
+        return redirect()->route('articles.index');
+        dd($articles->titre);
     }else {
         return redirect()->back();
     }
@@ -105,8 +105,8 @@ class JeuController extends Controller
     public function destroy($id)
     {
 
-        Jeu::destroy($id);
-        return redirect()->route('jeux.index');
+        Article::destroy($id);
+        return redirect()->route('articles.index');
         
     }
 }

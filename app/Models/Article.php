@@ -11,15 +11,21 @@ class Article extends Model
     protected $table = "article";
     protected $primaryKey = "id";
     public $timestamps = false;
-    protected $fillable = ['titre'];
+    protected $fillable = ['nom', 'prix', 'quantite_stock', 'selection', 'photo'];
     protected $fillable_desc = array('desc');
+
+    public function conditionnement(){
+        return $this->belongsTo(Conditionnement::class);
+
+    }
+
+    public function couleur(){
+        return $this->belongsTo(Couleur::class);
+
+    }
 
     public function categorie(){
         return $this->belongsTo(Categorie::class);
 
-    }
-
-    public function tags(){
-        return $this->belongsToMany(Tag::class, 'pivot_tags');
     }
 }
