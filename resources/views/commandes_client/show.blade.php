@@ -9,7 +9,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    
+
                     <div class="overflow-hidden
                                 shadow-sm
                                 rounded-lg">
@@ -18,14 +18,43 @@
                                     text-black
                                     text-center
                                     md:text-left">
-                            Titre : {{$articles->nom}}
-                            <p>Quantité : </p>
-                            <p>Categorie : {{$categorie->nom}}</p>
-                            <p>Couleur : {{$couleur->nom}}</p>
-                            <p>Conditionnement : {{$conditionnement->nom}}</p>
+                            <p>date_commande : {{$commandeClient->date_commande}}<br>
+                            etat_commmande :  {{$commandeClient->etat_commande}}
+                            <a href="{{route('commandes_client.edit', $commandeClient->id)}}"><x-modifier-btn></x-modifier-btn></a>
+                            <br>
+                            <br>
+                            date_livraison : {{$commandeClient->livraison->date_livraison}}<br>
+                            etat_livraison : {{$commandeClient->livraison->etat_livraison}}<br>
+
+                            Total de la commande : {{$total}} euros<br>
+                            <br>
+                            nom : {{$commandeClient->client->nom}}<br>
+                            prenom : {{$commandeClient->client->prenom}}<br>
+                            </p>
+
+                            <table class="border ">
+                                <thead>
+                                    <th>nom_article</th>
+                                    <th>conditionnement</th>
+                                    <th>couleur</th>
+                                    <th>categorie</th>
+                                    <th>quantite</th>
+                                    <th>prix</th>
+                                </thead>
+                                @foreach($lignesCommandeClient as $ligneCommandeClient)
+                                <tr class="odd:bg-gray-100">
+                                    <td class="table-border">{{$ligneCommandeClient->article->nom}}</td>
+                                    <td class="table-border">{{$ligneCommandeClient->article->conditionnement->nom}}</td>
+                                    <td class="table-border">{{$ligneCommandeClient->article->couleur->nom}}</td>
+                                    <td class="table-border">{{$ligneCommandeClient->article->categorie->nom}}</td>
+
+                                    <td class="table-border">{{$ligneCommandeClient->quantite}}</td>
+                                    <td class="table-border">{{$ligneCommandeClient->prix}}</td>
+                                </tr>
+                                @endforeach
+                                </ul>
+                            </table>
                         </div>
-                        <a href="{{route('articles.edit', $articles->id)}}"><x-modifier-btn></x-modifier-btn></a>
-                        <x-supprimer-btn :action="route('articles.destroy', $articles->id)"></x-supprimer-btn >
                     </div>
                 </div>
             </div>

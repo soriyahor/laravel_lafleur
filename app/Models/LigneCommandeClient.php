@@ -9,7 +9,6 @@ class LigneCommandeClient extends Model
 {
     use HasFactory;
     protected $table = "ligne_commande_clt";
-    protected $primaryKey = "id";
     public $timestamps = false;
     protected $fillable = ['quantite', 'nom_article', 'prix'];
     protected $fillable_desc = array('desc');

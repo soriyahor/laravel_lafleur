@@ -7,6 +7,7 @@ use App\Models\Loterie;
 use App\Models\CommandeClient;
 use App\Models\Livraison;
 use App\Models\Client;
+use App\Models\LigneCommandeClient;
 use Illuminate\Http\Request;
 
 class CommandeClientController extends Controller
@@ -52,9 +53,17 @@ class CommandeClientController extends Controller
     public function show($id)
     {
         $commandesClient = CommandeClient::find($id);
+        $lignesCommande = LigneCommandeClient::where('commande_clt_id', $id)->get();
+
+        $total = 0;
+
+        foreach ($lignesCommande as $ligneCommande) {
+            $total += $ligneCommande->prix;
+        }
+        $total = number_format($total, 2);
         // dd($jeu);
         return view('commandes_client.show', 
-        ['id' => $id, 'commandesClient' => $commandesClient]);
+        ['id' => $id, 'commandeClient' => $commandesClient, 'lignesCommandeClient' => $lignesCommande, 'total' => $total]);
     }
 
     /**
@@ -65,12 +74,18 @@ class CommandeClientController extends Controller
      */
     public function edit($id)
     {
+        $etatsCommande = ['payé','annulée'];
+        $commandeClient = CommandeClient::find($id);
+        return view('commandes_client.edit', ['etatsCommande' => $etatsCommande, 'commandeClient' => $commandeClient]);
 
     }
 
     public function update(Request $request, $id)
     {
-
+        $commandeClient = CommandeClient::find($id);
+        $commandeClient->etat_commande =  $request->input('etatCommande');
+        $commandeClient->save();
+        return redirect()->route('commandes_client.index');
     }
 
     /**
