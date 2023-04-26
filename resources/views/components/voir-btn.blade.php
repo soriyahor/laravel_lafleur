@@ -1,1 +1,1 @@
-<button class="btn-white">voir</button>
+<button class="btn-white" style="width: 100px; justify-content: center;">voir</button>

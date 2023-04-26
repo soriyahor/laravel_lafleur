@@ -103,6 +103,7 @@ class ArticleController extends Controller
             'nom' => 'required|string|max:45|min:5'
         ])) {
             $articles = Article::find($id);
+            $articles->nom = $request->input('nom');
             $articles->quantite_stock = $request->input('quantite_stock');
             $articles->save();
             return redirect()->route('articles.index');

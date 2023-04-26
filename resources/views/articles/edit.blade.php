@@ -10,8 +10,10 @@
                 <div class="p-6 text-gray-900">
                     <form action="{{route('articles.update', $articles->id)}}" method="POST">
                         @method ('PUT') @csrf
+                        <label>Nom</label>
+                        <input type="text" name="nom" id="nom" value="{{$articles->nom}}"><br><br>
                         <label>Quantité en stock</label>
-                        <input type="text" name="quantite_stock" id="quantite_stock" value="{{$articles->quantite_stock}}">
+                        <input type="text" name="quantite_stock" id="quantite_stock" value="{{$articles->quantite_stock}}"><br><br>
                         @error('nom')
                         <div class="text-red-500">{{$message}}</div>
                         @enderror
