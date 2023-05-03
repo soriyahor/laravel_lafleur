@@ -50,15 +50,17 @@ class ArticleController extends Controller
         ])) {
 
             $photo = $request->input('photo');
-            if(!isset($photo) || $photo == ""){
+            if (!isset($photo) || $photo == "") {
                 $photo = "naissance.jpg";
             }
-            $articles = $this->createNewArticle($request->input('nom'), 
-            $photo,
-            $request->input('prix'), 
-            $request->input('quantite_stock'), 
-            $request->input('selection'));
-            
+            $articles = $this->createNewArticle(
+                $request->input('nom'),
+                $photo,
+                $request->input('prix'),
+                $request->input('quantite_stock'),
+                $request->input('selection')
+            );
+
             $articles->categorie()->associate($request->input('categorie'));
             $articles->conditionnement()->associate($request->input('conditionnement'));
             $articles->couleur()->associate($request->input('couleur'));
@@ -72,7 +74,7 @@ class ArticleController extends Controller
         }
     }
 
-    public function createNewArticle($nom,$photo, $prix, $quantite_stock, $selection)
+    public function createNewArticle($nom, $photo, $prix, $quantite_stock, $selection)
     {
         $article = new Article();
         $article->photo = $photo;
@@ -80,7 +82,7 @@ class ArticleController extends Controller
         $article->prix = $prix;
         $article->quantite_stock = $quantite_stock;
         $article->selection = $selection;
-        
+
         return $article;
     }
 
