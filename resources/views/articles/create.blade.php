@@ -13,6 +13,8 @@
                         @csrf
                         <label>nom</label>
                         <input type="text" name="nom" id="nom"><br>
+                        <label>photo</label>
+                        <input type="text" name="photo"><br>
                         <label>prix</label>
                         <input type="text" name="prix" value="0"><br>
                         <label>quantite_stock</label>

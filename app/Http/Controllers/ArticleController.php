@@ -49,7 +49,12 @@ class ArticleController extends Controller
             'nom' => 'required|string|max:45|min:4'
         ])) {
 
+            $photo = $request->input('photo');
+            if(!isset($photo) || $photo == ""){
+                $photo = "naissance.jpg";
+            }
             $articles = $this->createNewArticle($request->input('nom'), 
+            $photo,
             $request->input('prix'), 
             $request->input('quantite_stock'), 
             $request->input('selection'));
@@ -67,9 +72,10 @@ class ArticleController extends Controller
         }
     }
 
-    public function createNewArticle($nom, $prix, $quantite_stock, $selection)
+    public function createNewArticle($nom,$photo, $prix, $quantite_stock, $selection)
     {
         $article = new Article();
+        $article->photo = $photo;
         $article->nom = $nom;
         $article->prix = $prix;
         $article->quantite_stock = $quantite_stock;
