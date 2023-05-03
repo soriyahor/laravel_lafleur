@@ -51,7 +51,7 @@ class ArticleController extends Controller
 
             $photo = $request->input('photo');
             if (!isset($photo) || $photo == "") {
-                $photo = "naissance.jpg";
+                $photo = "defaut.jpg";
             }
             $articles = $this->createNewArticle(
                 $request->input('nom'),
