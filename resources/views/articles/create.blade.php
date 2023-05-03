@@ -12,19 +12,33 @@
                     <form action="{{route('articles.store')}}" method="POST">
                         @csrf
                         <label>nom</label>
-                        <input type="text" name="nom" id="nom">
-                        <select name="categorie" id="categorie">
+                        <input type="text" name="nom" id="nom"><br>
+                        <label>prix</label>
+                        <input type="text" name="prix" value="0"><br>
+                        <label>quantite_stock</label>
+                        <input type="number" name="quantite_stock" value="0"><br>
+                        <label>selection</label>
+                        <div>
+                            <input type="radio" name="selection" value="1" checked>
+                            <label for="huey">Oui</label>
+                        </div>
+
+                        <div>
+                            <input type="radio" name="selection" value="0">
+                            <label for="dewey">Non</label>
+                        </div><br>
+                        <select name="categorie" id="categorie"><br>
                             <option value="">--Choissisez la catégorie--</option>
                             @foreach($categories as $categorie)
                             <option value="{{$categorie->id}}">{{$categorie->nom}}</option>
                             @endforeach
-                        </select>
+                        </select><br>
                         <select name="conditionnement" id="conditionnement">
                             <option value="">--Choissisez le conditionnement--</option>
                             @foreach($conditionnements as $conditionnement)
                             <option value="{{$conditionnement->id}}">{{$conditionnement->nom}}</option>
                             @endforeach
-                        </select>
+                        </select><br>
                         <select name="couleur" id="couleur">
                             <option value="">--Choissisez la couleur--</option>
                             @foreach($couleurs as $couleur)

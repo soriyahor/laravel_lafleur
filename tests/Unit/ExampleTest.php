@@ -3,6 +3,8 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
+use App\Http\Controllers\ArticleController;
+use Symfony\Component\HttpFoundation\Request;
 
 class ExampleTest extends TestCase
 {
@@ -11,13 +13,47 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function test_that_true_is_true()
+    public function test_article_nom()
     {
 
-        //1
-        
-        $this->assertTrue(true);
+        $articleController = new ArticleController();
+        $article = $articleController->createNewArticle(
+            "test", 10, 100, 0
+        );
+        $this->assertEquals("test", $article->nom);
 
-        //0.99 1
+    }
+
+    public function test_article_prix()
+    {
+
+        $articleController = new ArticleController();
+        $article = $articleController->createNewArticle(
+            "test", 10, 100, 0
+        );
+        $this->assertEquals(10, $article->prix);
+
+    }
+
+    public function test_article_quantite_stock()
+    {
+
+        $articleController = new ArticleController();
+        $article = $articleController->createNewArticle(
+            "test", 10, 100, 0
+        );
+        $this->assertEquals(100, $article->quantite_stock);
+
+    }
+
+    public function test_article_selection()
+    {
+
+        $articleController = new ArticleController();
+        $article = $articleController->createNewArticle(
+            "test", 10, 100, 0
+        );
+        $this->assertEquals(0, $article->selection);
+
     }
 }

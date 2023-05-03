@@ -34,8 +34,7 @@ class ArticleController extends Controller
         $couleurs = Couleur::all();
 
 
-        return view('articles.create', ['categories' => $categories, 'conditionnements'=>$conditionnements, 'couleurs' => $couleurs]);
-
+        return view('articles.create', ['categories' => $categories, 'conditionnements' => $conditionnements, 'couleurs' => $couleurs]);
     }
 
     /**
@@ -49,21 +48,34 @@ class ArticleController extends Controller
         if ($request->validate([
             'nom' => 'required|string|max:45|min:4'
         ])) {
-            $articles = new Article();
-            $articles->nom = $request->input('nom');
-            $articles->prix = 10;
-            $articles->quantite_stock = 100;
-            $articles->selection = 0;
+
+            $articles = $this->createNewArticle($request->input('nom'), 
+            $request->input('prix'), 
+            $request->input('quantite_stock'), 
+            $request->input('selection'));
+            
             $articles->categorie()->associate($request->input('categorie'));
             $articles->conditionnement()->associate($request->input('conditionnement'));
             $articles->couleur()->associate($request->input('couleur'));
+
             $articles->save();
-            
+
             return redirect()->route('articles.index');
             dd($request);
         } else {
             return redirect()->back();
         }
+    }
+
+    public function createNewArticle($nom, $prix, $quantite_stock, $selection)
+    {
+        $article = new Article();
+        $article->nom = $nom;
+        $article->prix = $prix;
+        $article->quantite_stock = $quantite_stock;
+        $article->selection = $selection;
+        
+        return $article;
     }
 
     /**
@@ -93,7 +105,7 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $articles = Article::find($id);
-        
+
         return view('articles.edit', ['id' => $id, 'articles' => $articles]);
     }
 

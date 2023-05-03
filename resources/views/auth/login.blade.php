@@ -1,5 +1,7 @@
 <x-guest-layout>
-<img src="../public/lafleur.png" alt="logo lafleur" style="height: 180px" class="justify-center">
+<div class="flex justify-center">
+  <img src="../public/lafleur.png" alt="logo lafleur" style="height: 180px">
+</div>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
