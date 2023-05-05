@@ -11,7 +11,7 @@ class ExampleTest extends TestCase
     /**
      * Test unitaire
      * de createNewArticle
-     *
+     * verifie que le nom est bien saisi
      * @return void
      */
     public function test_article_nom()
@@ -27,7 +27,12 @@ class ExampleTest extends TestCase
         );
         $this->assertEquals("test", $article->nom);
     }
-
+    /**
+     * Test unitaire
+     * de createNewArticle
+     * verifie que le prix est bien saisi
+     * @return void
+     */
     public function test_article_prix()
     {
 
@@ -42,6 +47,12 @@ class ExampleTest extends TestCase
         $this->assertEquals(10, $article->prix);
     }
 
+        /**
+     * Test unitaire
+     * de createNewArticle
+     * verifie que la quantite_stock est bien saisi
+     * @return void
+     */
     public function test_article_quantite_stock()
     {
 
@@ -56,6 +67,12 @@ class ExampleTest extends TestCase
         $this->assertEquals(100, $article->quantite_stock);
     }
 
+        /**
+     * Test unitaire
+     * de createNewArticle
+     * verifie que la selection est bien saisi
+     * @return void
+     */
     public function test_article_selection()
     {
 
