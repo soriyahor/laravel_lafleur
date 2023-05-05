@@ -9,7 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 class ExampleTest extends TestCase
 {
     /**
-     * A basic test example.
+     * Test unitaire
+     * de createNewArticle
      *
      * @return void
      */
@@ -18,10 +19,13 @@ class ExampleTest extends TestCase
 
         $articleController = new ArticleController();
         $article = $articleController->createNewArticle(
-            "test", 10, 100, 0
+            "test",
+            "",
+            10,
+            100,
+            0
         );
         $this->assertEquals("test", $article->nom);
-
     }
 
     public function test_article_prix()
@@ -29,10 +33,13 @@ class ExampleTest extends TestCase
 
         $articleController = new ArticleController();
         $article = $articleController->createNewArticle(
-            "test", 10, 100, 0
+            "test",
+            "",
+            10,
+            100,
+            0
         );
         $this->assertEquals(10, $article->prix);
-
     }
 
     public function test_article_quantite_stock()
@@ -40,10 +47,13 @@ class ExampleTest extends TestCase
 
         $articleController = new ArticleController();
         $article = $articleController->createNewArticle(
-            "test", 10, 100, 0
+            "test",
+            "",
+            10,
+            100,
+            0
         );
         $this->assertEquals(100, $article->quantite_stock);
-
     }
 
     public function test_article_selection()
@@ -51,9 +61,12 @@ class ExampleTest extends TestCase
 
         $articleController = new ArticleController();
         $article = $articleController->createNewArticle(
-            "test", 10, 100, 0
+            "test",
+            "",
+            10,
+            100,
+            0
         );
         $this->assertEquals(0, $article->selection);
-
     }
 }
