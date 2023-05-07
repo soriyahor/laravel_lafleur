@@ -11,13 +11,13 @@
                 <div class="p-6 text-gray-900">
                     <form action="{{route('articles.store')}}" method="POST">
                         @csrf
-                        <label>nom</label>
+                        <label>nom</label><br>
                         <input type="text" name="nom" id="nom"><br>
-                        <label>photo</label>
+                        <label>photo</label><br>
                         <input type="text" name="photo"><br>
-                        <label>prix</label>
+                        <label>prix</label><br>
                         <input type="text" name="prix" value="0"><br>
-                        <label>quantite_stock</label>
+                        <label>quantite_stock</label><br>
                         <input type="number" name="quantite_stock" value="0"><br>
                         <label>selection</label>
                         <div>

@@ -16,7 +16,6 @@ class ExampleTest extends TestCase
      */
     public function test_article_nom()
     {
-
         $articleController = new ArticleController();
         $article = $articleController->createNewArticle(
             "test",
@@ -35,7 +34,6 @@ class ExampleTest extends TestCase
      */
     public function test_article_prix()
     {
-
         $articleController = new ArticleController();
         $article = $articleController->createNewArticle(
             "test",
